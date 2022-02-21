@@ -22,6 +22,7 @@
                 @endforeach
             </div>
         </div>
+        {{ $proucts->links() }}
     </div>
 </div>
 @endsection
