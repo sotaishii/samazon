@@ -1,4 +1,4 @@
-<?php
+  <?php
   
   /*
   |--------------------------------------------------------------------------
@@ -25,8 +25,8 @@
   Route::get('users/mypage/favorite', 'UserController@favorite')->name('mypage.favorite');
   Route::get('users/mypage/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
   Route::put('users/mypage/password', 'UserController@update_password')->name('mypage.update_password');
-  Route::delete("users/mypage/delete", "UserController@destroy")->name("mypage.destroy");
-  
+  Route::delete('users/mypage/delete', 'UserController@destroy')->name('mypage.destroy');
+
   Route::post('products/{product}/reviews', 'ReviewController@store');
   
   Route::get('products/{product}/favorite', 'ProductController@favorite')->name('products.favorite');
@@ -36,14 +36,13 @@
   
   Route::get('/home', 'HomeController@index')->name('home');
   
-  Route::get('/dashboard', 'DashboardController@index')->middleware('auth:admins');
+  Route::get('/dashboard', 'DashboardController@index');
   
   Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function() {
-      Route::get('login', 'Dashboard\Auth\LoginController@showLoginForm')->name('login');
-      Route::post('login', 'Dashboard\Auth\LoginController@login')->name('login');
-      Route::resource('products', 'Dashboard\ProductController')->middleware('auth:admins');
-      Route::resource("major_categories", "Dashboard\MajorCategoryController")->middleware("auth:admins");
-      Route::resource("users", "Dashboard\UserController")->middleware("auth:admins");
+      Route::resource('major_categories', 'Dashboard\MajorCategoryController');
+      Route::resource('categories', 'Dashboard\CategoryController');
+      Route::resource('products', 'Dashboard\ProductController');
+      Route::resource('users', 'Dashboard\UserController');
   });
   
   if (env('APP_ENV') === 'production') {
