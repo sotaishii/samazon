@@ -38,11 +38,15 @@
   
   Route::get('/dashboard', 'DashboardController@index');
   
+  
   Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function() {
+     Route::get('login', 'Dashboard\Auth\LoginController@showLoginForm')->name('login');
+      Route::post('login', 'Dashboard\Auth\LoginController@login')->name('login');
       Route::resource('major_categories', 'Dashboard\MajorCategoryController');
       Route::resource('categories', 'Dashboard\CategoryController');
       Route::resource('products', 'Dashboard\ProductController');
       Route::resource('users', 'Dashboard\UserController');
+      
   });
   
   if (env('APP_ENV') === 'production') {
