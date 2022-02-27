@@ -46,6 +46,7 @@
       Route::resource('categories', 'Dashboard\CategoryController');
       Route::resource('products', 'Dashboard\ProductController');
       Route::resource('users', 'Dashboard\UserController');
+      Route::get("orders", "Dashboard\OrderController@index")->middleware("auth:admins");
       
   });
   
