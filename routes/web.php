@@ -47,6 +47,8 @@
       Route::resource('products', 'Dashboard\ProductController');
       Route::resource('users', 'Dashboard\UserController');
       Route::get("orders", "Dashboard\OrderController@index")->middleware("auth:admins");
+      Route::get('products/import/csv', 'Dashboard\ProductController@import')->name('products.import_csv')->middleware('auth:admins');
+    Route::post('products/import/csv', 'Dashboard\ProductController@import_csv')->middleware('auth:admins');
       
   });
   
